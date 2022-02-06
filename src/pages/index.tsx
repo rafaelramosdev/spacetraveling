@@ -106,42 +106,44 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
       </Head>
 
       <main className={commonStyles.container}>
-        <img src="/images/logo.svg" alt="logo" />
+        <section>
+          <img src="/images/logo.svg" alt="logo" />
 
-        <div className={styles.postsContainer}>
-          {posts.map(post => {
-            return (
-              <Link key={post.uid} href={`/post/${post.uid}`}>
-                <a>
-                  <h1>{post.data.title}</h1>
-                  <p>{post.data.subtitle}</p>
+          <div className={styles.postsContainer}>
+            {posts.map(post => {
+              return (
+                <Link key={post.uid} href={`/post/${post.uid}`}>
+                  <a>
+                    <h1>{post.data.title}</h1>
+                    <p>{post.data.subtitle}</p>
 
-                  <div className={styles.postInfo}>
-                    <div className={styles.createdAt}>
-                      <FiCalendar color="#bbbbbb" />
-                      <time>{post.first_publication_date}</time>
+                    <div className={styles.postInfo}>
+                      <div className={styles.createdAt}>
+                        <FiCalendar color="#bbbbbb" />
+                        <time>{post.first_publication_date}</time>
+                      </div>
+
+                      <div className={styles.author}>
+                        <FiUser color="#bbbbbb" />
+                        <span>{post.data.author}</span>
+                      </div>
                     </div>
+                  </a>
+                </Link>
+              );
+            })}
+          </div>
 
-                    <div className={styles.author}>
-                      <FiUser color="#bbbbbb" />
-                      <span>{post.data.author}</span>
-                    </div>
-                  </div>
-                </a>
-              </Link>
-            );
-          })}
-        </div>
-
-        {nextPage && (
-          <button
-            type="button"
-            className={styles.buttonLoadMorePost}
-            onClick={handleLoadMorePost}
-          >
-            Carregar mais posts
-          </button>
-        )}
+          {nextPage && (
+            <button
+              type="button"
+              className={styles.buttonLoadMorePost}
+              onClick={handleLoadMorePost}
+            >
+              Carregar mais posts
+            </button>
+          )}
+        </section>
       </main>
     </>
   );
